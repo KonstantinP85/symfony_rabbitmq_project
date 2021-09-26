@@ -8,11 +8,13 @@ use App\DataProvider\UserDataProvider;
 use App\Entity\User;
 use App\Manager\UserManager;
 use App\Repository\UserRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Console\Style\SymfonyStyle;
+use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class CreateAdminCommand extends Command
 {
@@ -27,16 +29,34 @@ class CreateAdminCommand extends Command
     private UserRepository $userRepository;
 
     /**
-     * CreateAdminCommand constructor.
+     * @var EntityManagerInterface
+     */
+    private EntityManagerInterface $entityManager;
+
+    /**
+     * @var UserPasswordEncoderInterface
+     */
+    private UserPasswordEncoderInterface $passwordEncoder;
+
+    /**
      * @param UserManager $userManager
      * @param UserRepository $userRepository
+     * @param EntityManagerInterface $entityManager
+     * @param UserPasswordEncoderInterface $passwordEncoder
      * @param string|null $name
      */
-    public function __construct(UserManager $userManager, UserRepository $userRepository, string $name = null)
-    {
+    public function __construct(
+        UserManager $userManager,
+        UserRepository $userRepository,
+        EntityManagerInterface $entityManager,
+        UserPasswordEncoderInterface $passwordEncoder,
+        string $name = null
+    ) {
         parent::__construct($name);
         $this->userManager = $userManager;
         $this->userRepository = $userRepository;
+        $this->entityManager = $entityManager;
+        $this->passwordEncoder = $passwordEncoder;
     }
 
     protected function configure(): void
@@ -170,7 +190,7 @@ class CreateAdminCommand extends Command
                 $io->info('Пользователь с таким номером телефона уже существует');
             }
 
-            $this->userManager->create(
+            $user = $this->userManager->create(
                 $firstName,
                 $lastName,
                 [UserDataProvider::ROLE_ADMIN],
@@ -178,10 +198,13 @@ class CreateAdminCommand extends Command
                 $phone,
                 \DateTime::createFromFormat('Y-m-d', $birthday),
                 $gender,
-                $password,
                 $patronymic,
                 null
             );
+            $encoded = $this->passwordEncoder->encodePassword($user, $password);
+            $user->setPassword($encoded);
+            $this->entityManager->flush();
+
             $io->success('Администратор создан');
 
             return Command::SUCCESS;
