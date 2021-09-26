@@ -1,6 +1,6 @@
 # symfony_rabbitmq_project (symfony 5.3, php 7.4, rabbitmq, docker)
 <p><b>RabbitMQ запускается в docker: docker-compose up -d</b></p>
-<p><b>Создание администратора командой php bin/console app:create-admin</b></p>
+<p><b>Создание администратора командой: php bin/console app:create-admin</b></p>
  
 <p>Задача:</p>
 <p>Необходимо реализовать систему уведомлений для посетителей фитнес-клуба.</p>
