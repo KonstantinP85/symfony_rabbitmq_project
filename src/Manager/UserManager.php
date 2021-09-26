@@ -67,6 +67,7 @@ class UserManager
     }
 
     /**
+     * Добавление попытки входа
      * @param string $id
      * @return User
      * @throws AppException
@@ -84,6 +85,7 @@ class UserManager
     }
 
     /**
+     * Обнуление количества попыток входа
      * @param string $id
      * @return User
      * @throws AppException
@@ -98,6 +100,7 @@ class UserManager
     }
 
     /**
+     * Получение одного пользователя
      * @param string $id
      * @return User
      * @throws AppException
@@ -113,6 +116,7 @@ class UserManager
     }
 
     /**
+     * Получение списка пользователей
      * @return array|User[]
      */
     public function getList(): array
@@ -166,6 +170,7 @@ class UserManager
     }
 
     /**
+     * Отправка ссылки для ввода пароля и авторизации
      * @param User $user
      */
     private function sendPasswordLink(User $user)
@@ -183,6 +188,7 @@ class UserManager
     }
 
     /**
+     * Сохранение указазнного пароля пользователем
      * @param User $user
      * @param string $password
      * @param string $confirmPassword
@@ -203,6 +209,7 @@ class UserManager
     }
 
     /**
+     * Блокировка/разблокировка пользователя
      * @param string $id
      * @throws AppException
      */
@@ -219,6 +226,7 @@ class UserManager
     }
 
     /**
+     * Замена пароля
      * @param User $user
      * @param string $oldPassword
      * @param string $newPassword
@@ -240,6 +248,7 @@ class UserManager
     }
 
     /**
+     * Загрузка фото
      * @param UploadedFile $image
      * @param string $imageUploadDirectory
      * @return string

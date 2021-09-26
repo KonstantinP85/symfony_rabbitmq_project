@@ -12,6 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AbstractController
 {
     /**
+     * Главная страница админа
      * @Route("/user", name="main_user_page")
      * @return Response
      */

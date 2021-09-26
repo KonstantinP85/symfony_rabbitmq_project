@@ -38,6 +38,7 @@ class SecurityController extends AbstractController
     }
 
     /**
+     * Изменение пароля
      * @Route("/user/changePassword", name="user_change_password")
      */
     public function changePassword(Request $request, UserManager $userManager): Response
@@ -70,6 +71,7 @@ class SecurityController extends AbstractController
     }
 
     /**
+     * Страница авторизации пользователя по ссылке. Здесь же вводит пароль и подтверждение
      * @Route("/createPassword", name="create_password")
      */
     public function createPassword(Request $request): Response

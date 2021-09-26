@@ -58,6 +58,7 @@ class GroupLessonManager
     }
 
     /**
+     * ПОлучение списка занятий для одмина с количеством подписок
      * @return array
      */
     public function getListForAdmin(): array
@@ -81,6 +82,7 @@ class GroupLessonManager
         return $result;
     }
     /**
+     * Получения списка занятия пользователя (на которые он подписан и все остальные)
      * @param User $user
      * @return array
      */
@@ -108,6 +110,7 @@ class GroupLessonManager
     }
 
     /**
+     * Создание занятия
      * @param string $title
      * @param string $firstNameTrainer
      * @param string $lastNameTrainer
@@ -127,33 +130,7 @@ class GroupLessonManager
     }
 
     /**
-     * @param string $id
-     * @param string $title
-     * @param string $firstNameTrainer
-     * @param string $lastNameTrainer
-     * @param string $description
-     * @param string|null $patronymicTrainer
-     * @throws AppException
-     */
-    public function update(
-        string  $id,
-        string  $title,
-        string  $firstNameTrainer,
-        string  $lastNameTrainer,
-        string  $description,
-        ?string $patronymicTrainer
-    ) {
-        $groupLesson = $this->get($id);
-        $groupLesson->setTitle($title);
-        $groupLesson->setFirstNameTrainer($firstNameTrainer);
-        $groupLesson->setLastNameTrainer($lastNameTrainer);
-        $groupLesson->setDescription($description);
-        $groupLesson->setPatronymicTrainer($patronymicTrainer);
-
-        $this->entityManager->flush();
-    }
-
-    /**
+     * Получения занятия по id
      * @param string $id
      * @return GroupLesson
      * @throws AppException
@@ -169,6 +146,7 @@ class GroupLessonManager
     }
 
     /**
+     * Удаление занятия
      * @param string $id
      * @throws AppException
      */
@@ -180,6 +158,7 @@ class GroupLessonManager
     }
 
     /**
+     * Добавление подписки
      * @param User $user
      * @param string $id
      * @throws AppException
@@ -194,6 +173,7 @@ class GroupLessonManager
     }
 
     /**
+     * Отмена подписки
      * @param User $user
      * @param string $id
      * @throws AppException
@@ -211,6 +191,7 @@ class GroupLessonManager
     }
 
     /**
+     * Изменение типа уведомления
      * @param User $user
      * @param string $id
      * @param string|null $notificationType
@@ -229,6 +210,7 @@ class GroupLessonManager
     }
 
     /**
+     * Отправка смс
      * @param string $smsMessage
      * @param string $id
      * @throws AppException
@@ -253,6 +235,7 @@ class GroupLessonManager
     }
 
     /**
+     * Отправка Емаил
      * @param string $emailMessage
      * @param string $id
      * @throws AppException

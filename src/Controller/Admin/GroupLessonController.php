@@ -18,6 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class GroupLessonController extends AdminController
 {
     /**
+     * Список групповых занятий
      * @Route("/admin/grouplesson", name="admin_group_lesson")
      * @param GroupLessonManager $groupLessonManager
      * @return Response
@@ -32,6 +33,7 @@ class GroupLessonController extends AdminController
     }
 
     /**
+     * Создание пользователя
      * @Route("/admin/grouplesson/create", name="admin_group_lesson_create")
      * @param Request $request
      * @param GroupLessonManager $groupLessonManager
@@ -61,7 +63,8 @@ class GroupLessonController extends AdminController
     }
 
     /**
-     * @Route("/admin/grouplesson/delete/{id}", name="admin_group_lesson_delete")
+     * Удаление занятия
+     * @Route("/admin/grouplesson/{id}/delete/", name="admin_group_lesson_delete")
      * @param GroupLessonManager $groupLessonManager
      * @param string $id
      * @return Response
@@ -78,6 +81,7 @@ class GroupLessonController extends AdminController
     }
 
     /**
+     * Отправка сообщений и информация и занятии
      * @Route("/admin/grouplesson/{id}/sandMessage", name="admin_group_lesson_sand_message")
      * @param Request $request
      * @param GroupLessonManager $groupLessonManager

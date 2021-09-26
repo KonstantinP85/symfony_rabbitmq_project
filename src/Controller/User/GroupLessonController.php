@@ -13,6 +13,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class GroupLessonController extends UserController
 {
     /**
+     * Список групповых занятий (те, на которые подписан клиент и все остальные)
      * @Route("/user/groupLessons", name="user_group_lesson")
      * @param GroupLessonManager $groupLessonManager
      * @return Response
@@ -36,6 +37,7 @@ class GroupLessonController extends UserController
     }
 
     /**
+     * Добавление подписки
      * @Route("/user/groupLessons/{id}/add", name="user_group_lesson_add")
      * @param GroupLessonManager $groupLessonManager
      * @param string $id
@@ -58,6 +60,7 @@ class GroupLessonController extends UserController
     }
 
     /**
+     * Отмена подписки
      * @Route("/user/groupLessons/{id}/cancel", name="user_group_lesson_cancel")
      * @param GroupLessonManager $groupLessonManager
      * @param string $id
@@ -79,6 +82,7 @@ class GroupLessonController extends UserController
     }
 
     /**
+     * Изменение типа уведомления
      * @Route("/user/groupLessons/{id}/change/notificationType", name="user_group_lesson_change_notification_type")
      * @param Request $request
      * @param GroupLessonManager $groupLessonManager

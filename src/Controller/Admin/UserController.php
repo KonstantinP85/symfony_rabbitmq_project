@@ -18,6 +18,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class UserController extends AdminController
 {
     /**
+     * Список пользователей
      * @Route("/admin/user", name="admin_user")
      * @param UserManager $userManager
      * @return Response
@@ -32,6 +33,7 @@ class UserController extends AdminController
     }
 
     /**
+     * Создание пользователя
      * @Route("/admin/user/create", name="admin_user_create")
      * @param Request $request
      * @param UserManager $userManager
@@ -72,6 +74,7 @@ class UserController extends AdminController
     }
 
     /**
+     * Блокировка\разблокировка пользователя
      * @Route("/admin/user/{id}/changeStatus", name="admin_user_change_status")
      * @param UserManager $userManager
      * @param string $id

@@ -12,6 +12,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class AdminController extends AbstractController
 {
     /**
+     * Главная страница админа
      * @Route("/admin", name="main_admin_page")
      * @param Request $request
      * @return Response

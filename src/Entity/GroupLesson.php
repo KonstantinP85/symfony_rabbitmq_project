@@ -73,6 +73,13 @@ class GroupLesson
      */
     private \DateTimeImmutable $updateTime;
 
+    /**
+     * @param string $title
+     * @param string $firstNameTrainer
+     * @param string $lastNameTrainer
+     * @param string $description
+     * @param string|null $patronymicTrainer
+     */
     public function __construct(
         string $title,
         string $firstNameTrainer,
