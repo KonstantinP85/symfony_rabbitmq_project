@@ -1,0 +1,23 @@
+{% extends 'admin/index.html.twig' %}
+{% block body %}
+    <div class="container-fluid">
+        <div class="row no-gutters">
+            <div class="col-12">
+                <h4 class="display-4 text-center">
+                    Создание пользователя
+                </h4>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row no-gutters justify-content-center">
+            <div class="col-5">
+                <div id="author" class="mt-3">
+                    {{ form(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

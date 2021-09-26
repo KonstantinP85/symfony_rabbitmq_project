@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}User{% endblock %}</title>
+    {% block stylesheets %}
+        <!-- CSS only -->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    {% endblock %}
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{{ path('main_user_page') }}">User</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="{{ path('main_user_page') }}">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('main_user_page') }}">Main page</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('user_change_password') }}">Изменить пароль</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ path('user_group_lesson') }}">Групповые занятия</a>
+                </li>
+            </ul>
+            <form class="form-inline">
+                <a href="{{ path('app_logout') }}" class="btn btn-outline-danger my-2 my-sm-0 mr-5" type="submit">Exit</a>
+            </form>
+        </div>
+    </div>
+</nav>
+{% block body %}
+    <div class="container-fluid">
+        <div class="row no-gutters justify-content-center mt-4">
+            <div class="col-2">
+                <h3>Добрый день, {{ profile.firstName }}</h3>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row no-gutters justify-content-left mt-4">
+            <div class="col-3">
+                <p>Фамилия: {{ profile.lastName }}</p>
+                <p>Имя: {{ profile.firstName }}</p>
+                <p>Отчество:  {% if profile.patronymic is defined %}{{ profile.patronymic }}{% endif %}</p>
+            </div>
+            <div class="col-3">
+                <img src="{{ asset('uploads/image/') }}{{ profile.image }}"
+                     style="width: 250px;" alt="">
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+
+{% endblock %}
+</body>
+</html>

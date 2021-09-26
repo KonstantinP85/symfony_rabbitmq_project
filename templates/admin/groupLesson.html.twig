@@ -1,0 +1,63 @@
+{% extends 'admin/index.html.twig' %}
+{% block body %}
+    <div class="container-fluid">
+        <div class="row no-gutters">
+            <div class="col-12">
+                <h4 class="display-4 text-left">
+                    <a class="btn btn-success" href="{{ path('admin_group_lesson_create') }}">Создать новое занятие</a><br>
+                </h4>
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row no-gutters justify-content-center">
+            <div class="col-8">
+            </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row no-gutters">
+            <div class="col-8">
+                <h2>Список групповых занятий</h2>
+                <table class="table table-hover table-sm">
+                    <thead class="thead-light">
+                    <tr>
+                        <th scope="col">Название</th>
+                        <th scope="col">ФИО тренера</th>
+                        <th scope="col">Описание</th>
+                        <th scope="col">Количество участников</th>
+                        <th scope="col">Редактировать</th>
+                        <th scope="col">Отправить уведомление</th>
+                        <th scope="col">Удалить занятие</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for groupLesson in groupLessons %}
+                        <tr>
+                            <td>{{ groupLesson.title }}</td>
+                            <td>{{ groupLesson.lastNameTrainer }} {{ groupLesson.firstNameTrainer }} {% if groupLesson.patronymicTrainer is defined %}{{ groupLesson.patronymicTrainer }}{% endif %}</td>
+                            <td>{{ groupLesson.description}}</td>
+                            <td class="text-center">{{ groupLesson.participantsNumber }}</td>
+                            <td><a href="#" class="btn btn-success btn-sm" type="submit">
+                                    Редактировать
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{ path('admin_group_lesson_sand_message', {'id':groupLesson.id}) }}" class="btn btn-success btn-sm" type="submit">
+                                    Отправить уведомление
+                                </a>
+                            </td>
+                            <td>
+                                <a href="{{ path('admin_group_lesson_delete', {'id':groupLesson.id}) }}" class="btn btn-danger btn-sm" type="submit">
+                                    Удалить
+                                </a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
